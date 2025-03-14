@@ -1,7 +1,7 @@
 {
   "name": "ps-svelte-template",
   "private": true,
-  "version": "25.03.19",
+  "version": "25.03.20",
   "type": "module",
   "scripts": {
     "dev": "vite",
