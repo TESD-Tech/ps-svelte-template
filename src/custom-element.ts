@@ -4,6 +4,16 @@ import App from './App.svelte';
 // We'll manually inject them into the shadow DOM
 import styles from './app.css?inline';
 
+// Dynamically determine the package name from the base URL
+function getPackageName(): string {
+  // Get the base URL from import.meta
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  // Remove leading and trailing slashes
+  const cleanedBase = baseUrl.replace(/^\/|\/$/g, '');
+  // If there's a value, use it; otherwise fall back to a default
+  return cleanedBase || 'ps-svelte';
+}
+
 export class SvelteAppElement extends HTMLElement {
   private shadow: ShadowRoot;
   private app: any;
@@ -39,5 +49,10 @@ export class SvelteAppElement extends HTMLElement {
   }
 }
 
-// Define the custom element
-customElements.define('ps-svelte-app', SvelteAppElement);
+// Define the custom element with the package name as a prefix
+const packageName = getPackageName();
+const elementName = `${packageName}-app`;
+
+// Log the custom element name for debugging
+console.log(`Registering custom element: ${elementName}`);
+customElements.define(elementName, SvelteAppElement);
