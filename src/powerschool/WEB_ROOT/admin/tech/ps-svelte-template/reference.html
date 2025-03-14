@@ -2,269 +2,283 @@
 <html>
 
 <!-- non framed -->
-<head>
-	<title>T/E Tech - PowerSchool Svelte Template Reference</title>
-	~[wc:commonscripts]
-	<link href="/images/css/screen.css" rel="stylesheet" media="screen">
-	<link href="/images/css/print.css" rel="stylesheet" media="print">
 
-	<style type="text/css">
-		.dfd {
-			max-width: 1400px;
-			width: 100%;
-		}
-		.component-example {
-			border: 1px solid #ccc;
-			padding: 20px;
-			margin: 15px 0;
-			background-color: #f9f9f9;
-			border-radius: 4px;
-		}
-		.code-block {
-			background-color: #f5f5f5;
-			padding: 15px;
-			border: 1px solid #e0e0e0;
-			border-radius: 4px;
-			font-family: monospace;
-			white-space: pre-wrap;
-			margin: 10px 0;
-			overflow-x: auto;
-		}
-		.info-box {
-			background-color: #e3f2fd;
-			padding: 15px;
-			border-left: 4px solid #2196f3;
-			margin: 15px 0;
-		}
-		.warning-box {
-			background-color: #fff8e1;
-			padding: 15px;
-			border-left: 4px solid #ffc107;
-			margin: 15px 0;
-		}
-		.feature-list {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-			gap: 20px;
-			margin: 20px 0;
-		}
-		.feature-item {
-			background-color: #f5f5f5;
-			padding: 15px;
-			border-radius: 4px;
-			border-top: 3px solid #4CAF50;
-		}
-		.feature-item h4 {
-			margin-top: 0;
-			color: #2e7d32;
-		}
-	</style>
+<head>
+  <title>T/E Tech - PowerSchool Svelte Template Reference</title>
+  ~[wc:commonscripts]
+  <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+  <link href="/images/css/print.css" rel="stylesheet" media="print">
+
+  <style type="text/css">
+    .dfd {
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    .component-example {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 15px 0;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+
+    .code-block {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+
+    .info-box {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-left: 4px solid #2196f3;
+      margin: 15px 0;
+    }
+
+    .warning-box {
+      background-color: #fff8e1;
+      padding: 15px;
+      border-left: 4px solid #ffc107;
+      margin: 15px 0;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .feature-item {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 4px;
+      border-top: 3px solid #4CAF50;
+    }
+
+    .feature-item h4 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
+  </style>
 </head>
 
 <body>
-	~[wc:admin_header_frame_css]
-	<!-- breadcrumb start -->
-	<a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/tech" target="_top">System</a> &gt; T/E Tech - PowerSchool Svelte Template Reference
-	<!-- breadcrumb end -->
-	~[wc:admin_navigation_frame_css]
-
-	<div class="box-round">
-		<h1>PowerSchool Svelte Template Reference</h1>
-		
-		<p>This reference guide provides documentation for using the Svelte Template plugin to create modern web components and applications within PowerSchool.</p>
-		
-		<div class="info-box">
-			<h3>What is the Svelte Template?</h3>
-			<p>The PowerSchool Svelte Template is a modern framework for building PowerSchool plugins using Svelte 5, TypeScript, and Vite. It allows you to create both full applications and individual reusable web components that can be embedded in PowerSchool pages.</p>
-		</div>
-
-		<h2>Key Features</h2>
-		<div class="feature-list">
-			<div class="feature-item">
-				<h4>Svelte 5 with Runes</h4>
-				<p>Uses the latest Svelte 5 features for reactive state management</p>
-			</div>
-			<div class="feature-item">
-				<h4>TypeScript</h4>
-				<p>Full TypeScript support for type safety and better developer experience</p>
-			</div>
-			<div class="feature-item">
-				<h4>Tailwind CSS & Skeleton UI</h4>
-				<p>Pre-configured with modern CSS frameworks</p>
-			</div>
-			<div class="feature-item">
-				<h4>Shadow DOM Encapsulation</h4>
-				<p>Components are isolated from PowerSchool's styles</p>
-			</div>
-			<div class="feature-item">
-				<h4>Automatic Component Registration</h4>
-				<p>Components in src/lib are automatically available as web components</p>
-			</div>
-			<div class="feature-item">
-				<h4>PowerSchool Plugin Ready</h4>
-				<p>Includes plugin.xml and proper output structure</p>
-			</div>
-		</div>
-
-		<h2>Using Components in PowerSchool</h2>
-		
-		<h3>Full Application</h3>
-		<p>To use the full Svelte application in a PowerSchool page:</p>
-		<div class="code-block">&lt;!-- Include the script --&gt;
-&lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
-
-&lt;!-- Use the custom element --&gt;
-&lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;</div>
-
-		<h3>Individual Components</h3>
-		<p>To use individual components from the library:</p>
-		<div class="code-block">&lt;!-- Include the script --&gt;
-&lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
-
-&lt;!-- Use a component --&gt;
-&lt;svelte-counter&gt;&lt;/svelte-counter&gt;
-
-&lt;!-- With attributes/props --&gt;
-&lt;svelte-counter initial-count="10"&gt;&lt;/svelte-counter&gt;</div>
-
-		<h3>Component Example</h3>
-		<div class="component-example">
-			<h4>Counter Component</h4>
-			<svelte-counter></svelte-counter>
-		</div>
-
-		<h2>Creating New Components</h2>
-		<p>To add a new component to the library:</p>
-		<ol>
-			<li>Create a new <code>.svelte</code> file in the <code>src/lib</code> directory</li>
-			<li>Use Svelte 5's runes syntax for props and state</li>
-			<li>That's it! The component will be automatically registered as a web component</li>
-		</ol>
-
-		<h3>Example Component Code</h3>
-		<div class="code-block">&lt;script lang="ts"&gt;
-  // Define props using Svelte 5 runes
-  const props = $props&lt;{name?: string}&gt;();
-  
-  // Default value if name is not provided
-  const displayName = props.name ?? 'World';
-&lt;/script&gt;
-
-&lt;div class="greeting"&gt;
-  &lt;h2&gt;Hello, {displayName}!&lt;/h2&gt;
-&lt;/div&gt;
-
-&lt;style&gt;
-  .greeting {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-  }
-  
-  h2 {
-    margin: 0;
-    color: #333;
-  }
-&lt;/style&gt;</div>
-
-		<p>This component will be automatically available as <code>&lt;svelte-greeting&gt;</code> in PowerSchool:</p>
-		<div class="code-block">&lt;svelte-greeting name="PowerSchool"&gt;&lt;/svelte-greeting&gt;</div>
-
-		<h2>Creating Custom Pages</h2>
-		<p>To create a custom page in PowerSchool using this template:</p>
-		
-		<h3>1. Add a page definition to your plugin.xml:</h3>
-		<div class="code-block">&lt;page name="my-custom-page" content="my-custom-page.html" /&gt;</div>
-
-		<h3>2. Create the HTML file in the public directory:</h3>
-		<div class="code-block">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;My Custom Page&lt;/title&gt;
-  ~%5Bwc%3Acommonscripts%5D
-  &lt;link href="/images/css/screen.css" rel="stylesheet" media="screen"&gt;
-&lt;/head&gt;
-&lt;body&gt;
   ~[wc:admin_header_frame_css]
-  &lt;!-- breadcrumb start --&gt;
-  &lt;a href="/admin/home.html" target="_top"&gt;Start Page&lt;/a&gt; &gt; My Custom Page
-  &lt;!-- breadcrumb end --&gt;
-  ~%5Bwc%3Aadmin_navigation_frame_css%5D
+  <!-- breadcrumb start -->
+  <a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/tech" target="_top">System</a> &gt; T/E
+  Tech - PowerSchool Svelte Template Reference
+  <!-- breadcrumb end -->
+  ~[wc:admin_navigation_frame_css]
 
-  &lt;div class="box-round"&gt;
-    &lt;h1&gt;My Custom Page&lt;/h1&gt;
-    
-    &lt;!-- Include the script --&gt;
-    &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
-    
-    &lt;!-- Use components --&gt;
-    &lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;
-    
-    &lt;h2&gt;Individual Components&lt;/h2&gt;
-    &lt;svelte-counter&gt;&lt;/svelte-counter&gt;
-    &lt;svelte-greeting name="PowerSchool Admin"&gt;&lt;/svelte-greeting&gt;
-  &lt;/div&gt;
+  <div class="box-round">
+    <h1>PowerSchool Svelte Template Reference</h1>
 
-  ~%5Bwc%3Aadmin_footer_frame_css%5D
-&lt;/body&gt;
-&lt;/html&gt;</div>
+    <p>This reference guide provides documentation for using the Svelte Template plugin to create modern web components
+      and applications within PowerSchool.</p>
 
-		<h2>Advanced Usage</h2>
+    <div class="info-box">
+      <h3>What is the Svelte Template?</h3>
+      <p>The PowerSchool Svelte Template is a modern framework for building PowerSchool plugins using Svelte 5,
+        TypeScript, and Vite. It allows you to create both full applications and individual reusable web components that
+        can be embedded in PowerSchool pages.</p>
+    </div>
 
-		<h3>Component Attributes and Properties</h3>
-		<p>HTML attributes are automatically converted to camelCase for Svelte props:</p>
-		<div class="code-block">&lt;!-- HTML attribute: data-value --&gt;
-&lt;svelte-component data-value="123"&gt;&lt;/svelte-component&gt;</div>
+    <h2>Key Features</h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        <h4>Svelte 5 with Runes</h4>
+        <p>Uses the latest Svelte 5 features for reactive state management</p>
+      </div>
+      <div class="feature-item">
+        <h4>TypeScript</h4>
+        <p>Full TypeScript support for type safety and better developer experience</p>
+      </div>
+      <div class="feature-item">
+        <h4>Tailwind CSS & Skeleton UI</h4>
+        <p>Pre-configured with modern CSS frameworks</p>
+      </div>
+      <div class="feature-item">
+        <h4>Shadow DOM Encapsulation</h4>
+        <p>Components are isolated from PowerSchool's styles</p>
+      </div>
+      <div class="feature-item">
+        <h4>Automatic Component Registration</h4>
+        <p>Components in src/lib are automatically available as web components</p>
+      </div>
+      <div class="feature-item">
+        <h4>PowerSchool Plugin Ready</h4>
+        <p>Includes plugin.xml and proper output structure</p>
+      </div>
+    </div>
 
-		<p>In your Svelte component:</p>
-		<div class="code-block">&lt;script lang="ts"&gt;
-  const props = $props&lt;{dataValue?: string}&gt;();
-  console.log(props.dataValue); // "123"
-&lt;/script&gt;</div>
+    <h2>Using Components in PowerSchool</h2>
 
-		<h3>Event Handling</h3>
-		<p>To listen to events from your components in PowerSchool:</p>
-		<div class="code-block">&lt;svelte-counter id="myCounter"&gt;&lt;/svelte-counter&gt;
+    <h3>Full Application</h3>
+    <p>To use the full Svelte application in a PowerSchool page:</p>
+    <div class="code-block">&lt;!-- Include the script --&gt;
+      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
 
-&lt;script&gt;
-  document.getElementById('myCounter').addEventListener('count-changed', (event) => {
-    console.log('New count:', event.detail.count);
-  });
-&lt;/script&gt;</div>
+      &lt;!-- Use the custom element --&gt;
+      &lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;</div>
 
-		<h2>Troubleshooting</h2>
-		<div class="warning-box">
-			<h3>Component Not Showing Up</h3>
-			<ul>
-				<li>Make sure the script is properly loaded</li>
-				<li>Check browser console for errors</li>
-				<li>Verify that the component name matches the file name (with <code>svelte-</code> prefix)</li>
-			</ul>
-		</div>
+    <h3>Individual Components</h3>
+    <p>To use individual components from the library:</p>
+    <div class="code-block">&lt;!-- Include the script --&gt;
+      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
 
-		<div class="warning-box">
-			<h3>Styling Issues</h3>
-			<ul>
-				<li>Remember that Shadow DOM isolates styles</li>
-				<li>Global styles from PowerSchool won't affect your components</li>
-				<li>Use the browser inspector to debug Shadow DOM styles</li>
-			</ul>
-		</div>
+      &lt;!-- Use a component --&gt;
+      &lt;svelte-counter&gt;&lt;/svelte-counter&gt;
 
-		<h2>Additional Resources</h2>
-		<ul>
-			<li><a href="https://svelte.dev/docs" target="_blank">Svelte Documentation</a></li>
-			<li><a href="https://tailwindcss.com/docs" target="_blank">Tailwind CSS Documentation</a></li>
-			<li><a href="https://www.skeleton.dev/" target="_blank">Skeleton UI Documentation</a></li>
-			<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank">Web Components Documentation</a></li>
-		</ul>
-	</div>
+      &lt;!-- With attributes/props --&gt;
+      &lt;svelte-counter initial-count="10"&gt;&lt;/svelte-counter&gt;</div>
 
-	<!-- Load the Svelte component -->
-	<script type="module" src="/admin/ps-svelte-template/index.js"></script>
+    <h3>Component Example</h3>
+    <div class="component-example">
+      <h4>Counter Component</h4>
+      <svelte-counter></svelte-counter>
+    </div>
 
-	~[wc:admin_footer_frame_css]
+    <h2>Creating New Components</h2>
+    <p>To add a new component to the library:</p>
+    <ol>
+      <li>Create a new <code>.svelte</code> file in the <code>src/lib</code> directory</li>
+      <li>Use Svelte 5's runes syntax for props and state</li>
+      <li>That's it! The component will be automatically registered as a web component</li>
+    </ol>
+
+    <h3>Example Component Code</h3>
+    <div class="code-block">&lt;script lang="ts"&gt;
+      // Define props using Svelte 5 runes
+      const props = $props&lt;{name?: string}&gt;();
+
+      // Default value if name is not provided
+      const displayName = props.name ?? 'World';
+      &lt;/script&gt;
+
+      &lt;div class="greeting"&gt;
+      &lt;h2&gt;Hello, {displayName}!&lt;/h2&gt;
+      &lt;/div&gt;
+
+      &lt;style&gt;
+      .greeting {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      background-color: #f9f9f9;
+      }
+
+      h2 {
+      margin: 0;
+      color: #333;
+      }
+      &lt;/style&gt;</div>
+
+    <p>This component will be automatically available as <code>&lt;svelte-greeting&gt;</code> in PowerSchool:</p>
+    <div class="code-block">&lt;svelte-greeting name="PowerSchool"&gt;&lt;/svelte-greeting&gt;</div>
+
+    <h2>Creating Custom Pages</h2>
+    <p>To create a custom page in PowerSchool using this template:</p>
+
+    <h3>1. Add a page definition to your plugin.xml:</h3>
+    <div class="code-block">&lt;page name="my-custom-page" content="my-custom-page.html" /&gt;</div>
+
+    <h3>2. Create the HTML file in the public directory:</h3>
+    <div class="code-block">&lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+      &lt;head&gt;
+      &lt;meta charset="UTF-8"&gt;
+      &lt;title&gt;My Custom Page&lt;/title&gt;
+      ~ [wc:commonscripts] &lt;!-- Note: Remove the space between ~ and [ when using this tag --&gt;
+      &lt;link href="/images/css/screen.css" rel="stylesheet" media="screen"&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+      ~ [wc:admin_header_frame_css] &lt;!-- Note: Remove the space between ~ and [ when using this tag --&gt;
+      &lt;!-- breadcrumb start --&gt;
+      &lt;a href="/admin/home.html" target="_top"&gt;Start Page&lt;/a&gt; &gt; My Custom Page
+      &lt;!-- breadcrumb end --&gt;
+      ~ [wc:admin_navigation_frame_css] &lt;!-- Note: Remove the space between ~ and [ when using this tag --&gt;
+
+      &lt;div class="box-round"&gt;
+      &lt;h1&gt;My Custom Page&lt;/h1&gt;
+
+      &lt;!-- Include the script --&gt;
+      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
+
+      &lt;!-- Use components --&gt;
+      &lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;
+
+      &lt;h2&gt;Individual Components&lt;/h2&gt;
+      &lt;svelte-counter&gt;&lt;/svelte-counter&gt;
+      &lt;svelte-greeting name="PowerSchool Admin"&gt;&lt;/svelte-greeting&gt;
+      &lt;/div&gt;
+
+      ~ [wc:admin_footer_frame_css] &lt;!-- Note: Remove the space between ~ and [ when using this tag --&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;</div>
+
+    <h2>Advanced Usage</h2>
+
+    <h3>Component Attributes and Properties</h3>
+    <p>HTML attributes are automatically converted to camelCase for Svelte props:</p>
+    <div class="code-block">&lt;!-- HTML attribute: data-value --&gt;
+      &lt;svelte-component data-value="123"&gt;&lt;/svelte-component&gt;</div>
+
+    <p>In your Svelte component:</p>
+    <div class="code-block">&lt;script lang="ts"&gt;
+      const props = $props&lt;{dataValue?: string}&gt;();
+      console.log(props.dataValue); // "123"
+      &lt;/script&gt;</div>
+
+    <h3>Event Handling</h3>
+    <p>To listen to events from your components in PowerSchool:</p>
+    <div class="code-block">&lt;svelte-counter id="myCounter"&gt;&lt;/svelte-counter&gt;
+
+      &lt;script&gt;
+      document.getElementById('myCounter').addEventListener('count-changed', (event) => {
+      console.log('New count:', event.detail.count);
+      });
+      &lt;/script&gt;</div>
+
+    <h2>Troubleshooting</h2>
+    <div class="warning-box">
+      <h3>Component Not Showing Up</h3>
+      <ul>
+        <li>Make sure the script is properly loaded</li>
+        <li>Check browser console for errors</li>
+        <li>Verify that the component name matches the file name (with <code>svelte-</code> prefix)</li>
+      </ul>
+    </div>
+
+    <div class="warning-box">
+      <h3>Styling Issues</h3>
+      <ul>
+        <li>Remember that Shadow DOM isolates styles</li>
+        <li>Global styles from PowerSchool won't affect your components</li>
+        <li>Use the browser inspector to debug Shadow DOM styles</li>
+      </ul>
+    </div>
+
+    <h2>Additional Resources</h2>
+    <ul>
+      <li><a href="https://svelte.dev/docs" target="_blank">Svelte Documentation</a></li>
+      <li><a href="https://tailwindcss.com/docs" target="_blank">Tailwind CSS Documentation</a></li>
+      <li><a href="https://www.skeleton.dev/" target="_blank">Skeleton UI Documentation</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank">Web Components
+          Documentation</a></li>
+    </ul>
+  </div>
+
+  <!-- Load the Svelte component -->
+  <script type="module" src="/admin/ps-svelte-template/index.js"></script>
+
+  ~[wc:admin_footer_frame_css]
 </body>
+
 </html>
