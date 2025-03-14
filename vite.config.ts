@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import tailwindcss from "@tailwindcss/vite";
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -15,7 +14,6 @@ const projectName = packageJson.name.replace(/^@[^/]+\//, '');
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    tailwindcss(),
     svelte({
       compilerOptions: {
         // We'll handle custom elements differently for individual components vs. the main app

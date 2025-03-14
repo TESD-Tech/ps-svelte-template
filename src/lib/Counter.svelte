@@ -10,12 +10,29 @@
   }
 </script>
 
-<button style="padding: 0.5rem 1rem; font-size: 0.875rem; border-radius: 0.25rem; background-color: #bee3f8; color: #2c5282; cursor: pointer;" onclick={increment}>
-  count is {count}
+<button onclick={increment}>
+  count is {count}!
 </button>
 
 <style>
+  button {
+    border-radius: 8px;
+    border: 1px solid #d6bcfa;
+    color: #805ad5;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
   button:hover {
-    background-color: #90cdf4;
+    border-color: transparent;
+    background-color: #805ad5;
+    color: white;
+  }
+  button:active {
+    background-color: #6b46c1;
   }
 </style>
