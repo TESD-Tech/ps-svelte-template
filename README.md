@@ -17,7 +17,6 @@ A modern template for building PowerSchool plugins using Svelte 5, TypeScript, a
 
 - Node.js (v18+)
 - pnpm (recommended) or npm
-- PowerSchool Plugin SDK (for packaging)
 
 ### Clone the Template
 
@@ -55,27 +54,31 @@ This will create a production-ready build in the `dist/WEB_ROOT/ps-svelte-templa
 ### Packaging for PowerSchool
 
 ```bash
-# Package the plugin
+# Package the plugin using @tesd-tech/ps-package
 npx ps-package
 ```
 
-This will create a `.zip` file in the `dist` directory that can be installed in PowerSchool.
+This will create a `.zip` file in the `plugin_archive` directory that can be installed in PowerSchool.
 
 ## Project Structure
 
 ```
-├── dist/                 # Build output
-├── public/               # Static assets
+├── dist/                     # Build output
+├── plugin_archive/           # Plugin archives
+├── public/                   # Static assets
 ├── src/
-│   ├── lib/              # Reusable components (automatically registered as web components)
-│   ├── app.css           # Global styles
-│   ├── App.svelte        # Main application component
-│   ├── custom-element.ts # Full application web component wrapper
-│   ├── lib-components.ts # Automatic component registration system
-│   └── main.ts           # Entry point
-├── plugin.xml            # PowerSchool plugin configuration
-├── vite.config.ts        # Vite configuration
-└── package.json          # Project dependencies
+│   ├── lib/                  # Reusable components (automatically registered as web components)
+│   ├── app.css               # Global styles
+│   ├── App.svelte            # Main application component
+│   ├── custom-element.ts     # Full application web component wrapper
+│   ├── lib-components.ts     # Automatic component registration system
+│   └── main.ts               # Entry point
+│   └── powerschool/          # PowerSchool-specific files
+│       ├── WEB_ROOT/         # PowerSchool web root
+│       ├── pagecataloging/   # PowerSchool menu JSON file
+│       └── user_schema_root/ # PowerSchool database extension XML
+├── vite.config.ts            # Vite configuration
+└── package.json              # Project dependencies
 ```
 
 ## Using Components in PowerSchool
