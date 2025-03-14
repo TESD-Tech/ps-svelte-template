@@ -6,7 +6,7 @@ A modern template for building PowerSchool plugins using Svelte 5, TypeScript, a
 
 - **Svelte 5 with Runes**: Uses the latest Svelte 5 features for reactive state management
 - **TypeScript**: Full TypeScript support for type safety and better developer experience
-- **Tailwind CSS**: Pre-configured with a modern CSS framework
+- **Standard CSS**: Clean, vanilla CSS with no external dependencies
 - **Shadow DOM Encapsulation**: Components are isolated from PowerSchool's styles
 - **Automatic Component Registration**: Components in `src/lib` are automatically available as web components
 - **PowerSchool Plugin Ready**: Includes plugin.xml and proper output structure
@@ -207,7 +207,7 @@ This ensures that when you clone this template and rename it, your plugin will h
 
 ### Styling Components
 
-Components use Shadow DOM for style encapsulation. Global styles from `app.css` (including Tailwind and Skeleton UI) are automatically injected into each component's Shadow DOM.
+Components use Shadow DOM for style encapsulation. Global styles from `app.css` are automatically injected into each component's Shadow DOM.
 
 You can also use Svelte's scoped styles within each component:
 
