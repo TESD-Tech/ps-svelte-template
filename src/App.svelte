@@ -4,7 +4,7 @@
   import Counter from './lib/Counter.svelte'
 </script>
 
-<main>
+<main class="bg-white text-gray-900">
   <div>
     <a href="https://vite.dev" target="_blank" rel="noreferrer">
       <img src={viteLogo} class="logo" alt="Vite Logo" />
@@ -42,6 +42,6 @@
     filter: drop-shadow(0 0 2em #ff3e00aa);
   }
   .read-the-docs {
-    color: #888;
+    color: #4a5568; /* gray-700 for better light mode readability */
   }
 </style>

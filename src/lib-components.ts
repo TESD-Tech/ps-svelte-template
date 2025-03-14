@@ -1,5 +1,6 @@
 // This file automatically creates custom elements for all Svelte components in the lib directory
-import { mount, SvelteComponent } from 'svelte';
+import { mount } from 'svelte';
+import type { ComponentType } from 'svelte';
 import styles from './app.css?inline';
 
 // Import all components from lib directory
@@ -7,7 +8,7 @@ import styles from './app.css?inline';
 const componentModules = import.meta.glob('./lib/*.svelte', { eager: true });
 
 // Type for a Svelte component constructor
-type SvelteComponentConstructor = new (...args: any[]) => SvelteComponent;
+type SvelteComponentConstructor = ComponentType<any>;
 
 /**
  * Creates a custom element class for a Svelte component
@@ -18,7 +19,7 @@ function createCustomElementClass(
 ) {
   return class extends HTMLElement {
     private shadow: ShadowRoot;
-    private svelteInstance: SvelteComponent | null = null;
+    private svelteInstance: ReturnType<typeof mount> | null = null;
     private props: Record<string, any> = {};
     
     constructor() {
@@ -32,10 +33,9 @@ function createCustomElementClass(
       styleElement.textContent = styles;
       this.shadow.appendChild(styleElement);
       
-      // Create container with theme
+      // Create container
       const container = document.createElement('div');
       container.id = `${elementName}-container`;
-      container.setAttribute('data-theme', 'cerberus');
       this.shadow.appendChild(container);
     }
     
@@ -118,7 +118,7 @@ function createCustomElementClass(
         this.svelteInstance = mount(SvelteComponent, {
           target,
           props: this.props
-        }) as unknown as SvelteComponent;
+        });
       }
     }
     

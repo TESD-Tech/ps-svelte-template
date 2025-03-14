@@ -10,6 +10,12 @@
   }
 </script>
 
-<button class="btn btn-sm variant-filled-primary" onclick={increment}>
+<button style="padding: 0.5rem 1rem; font-size: 0.875rem; border-radius: 0.25rem; background-color: #bee3f8; color: #2c5282; cursor: pointer;" onclick={increment}>
   count is {count}
 </button>
+
+<style>
+  button:hover {
+    background-color: #90cdf4;
+  }
+</style>

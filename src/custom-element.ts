@@ -18,10 +18,9 @@ export class SvelteAppElement extends HTMLElement {
     styleElement.textContent = styles;
     this.shadow.appendChild(styleElement);
     
-    // Add a theme attribute to the container for Skeleton UI
+    // Create container for the Svelte app
     const appContainer = document.createElement('div');
     appContainer.id = 'svelte-app-container';
-    appContainer.setAttribute('data-theme', 'cerberus');
     this.shadow.appendChild(appContainer);
   }
 
