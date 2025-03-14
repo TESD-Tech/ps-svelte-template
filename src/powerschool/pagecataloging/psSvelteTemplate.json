@@ -3,7 +3,7 @@
     {
       "htmlID": "navPsSvelteTemplate",
       "title": "PowerSchool Svelte Template Reference",
-      "version": "25.03.12",
+      "version": "25.03.14",
       "districtLevelContext": 0,
       "pageURL": "/admin/tech/ps-svelte-template/reference.html",
       "parentHTMLID": "navSystemManagementCustomizations"

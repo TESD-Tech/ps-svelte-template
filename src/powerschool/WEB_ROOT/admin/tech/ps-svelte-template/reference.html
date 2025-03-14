@@ -123,7 +123,7 @@
     <h3>Full Application</h3>
     <p>To use the full Svelte application in a PowerSchool page:</p>
     <div class="code-block">&lt;!-- Include the script --&gt;
-      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
+      &lt;script type="module" src="/your-plugin-name/index.js"&gt;&lt;/script&gt; &lt;!-- Replace 'your-plugin-name' with your package.json name --&gt;
 
       &lt;!-- Use the custom element --&gt;
       &lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;</div>
@@ -131,7 +131,7 @@
     <h3>Individual Components</h3>
     <p>To use individual components from the library:</p>
     <div class="code-block">&lt;!-- Include the script --&gt;
-      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
+      &lt;script type="module" src="/your-plugin-name/index.js"&gt;&lt;/script&gt; &lt;!-- Replace 'your-plugin-name' with your package.json name --&gt;
 
       &lt;!-- Use a component --&gt;
       &lt;svelte-counter&gt;&lt;/svelte-counter&gt;
@@ -209,7 +209,7 @@
       &lt;h1&gt;My Custom Page&lt;/h1&gt;
 
       &lt;!-- Include the script --&gt;
-      &lt;script type="module" src="/admin/ps-svelte-template/index.js"&gt;&lt;/script&gt;
+      &lt;script type="module" src="/your-plugin-name/index.js"&gt;&lt;/script&gt; &lt;!-- Replace 'your-plugin-name' with your package.json name --&gt;
 
       &lt;!-- Use components --&gt;
       &lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;
@@ -276,7 +276,7 @@
   </div>
 
   <!-- Load the Svelte component -->
-  <script type="module" src="/admin/ps-svelte-template/index.js"></script>
+  <script type="module" src="/ps-svelte-template/index.js"></script>
 
   ~[wc:admin_footer_frame_css]
 </body>

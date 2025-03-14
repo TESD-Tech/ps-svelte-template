@@ -89,7 +89,7 @@ To use the full Svelte application in a PowerSchool page:
 
 ```html
 <!-- Include the script -->
-<script type="module" src="/admin/ps-svelte-template/index.js"></script>
+<script type="module" src="/ps-svelte-template/index.js"></script>
 
 <!-- Use the custom element -->
 <ps-svelte-app></ps-svelte-app>
@@ -101,7 +101,7 @@ To use individual components from the library:
 
 ```html
 <!-- Include the script -->
-<script type="module" src="/admin/ps-svelte-template/index.js"></script>
+<script type="module" src="/ps-svelte-template/index.js"></script>
 
 <!-- Use a component -->
 <svelte-counter></svelte-counter>
@@ -175,7 +175,7 @@ To create a custom page in PowerSchool using this template:
 </head>
 <body>
   <!-- Include the script -->
-  <script type="module" src="/admin/ps-svelte-template/index.js"></script>
+  <script type="module" src="/ps-svelte-template/index.js"></script>
   
   <!-- Use components -->
   <div class="ps-page">
@@ -194,9 +194,16 @@ To create a custom page in PowerSchool using this template:
 
 ### Changing the Plugin Name
 
-1. Update the `name` attribute in `plugin.xml`
-2. Update the `base` path in `vite.config.ts`
-3. Update the `outDir` path in `vite.config.ts`
+1. Update the `name` field in `package.json`
+2. Update the `name` attribute in `plugin.xml`
+3. Update the version in both files to match
+
+The build paths in `vite.config.ts` will automatically update based on your package name to prevent namespace collisions. The template reads the project name from `package.json` and dynamically sets:
+
+- The base path (`base: /${projectName}/`)
+- The output directory (`outDir: dist/WEB_ROOT/${projectName}/`)
+
+This ensures that when you clone this template and rename it, your plugin will have its own unique namespace in PowerSchool.
 
 ### Styling Components
 

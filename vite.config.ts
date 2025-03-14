@@ -1,6 +1,16 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from "@tailwindcss/vite";
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+// Read package.json to get the project name
+const packageJson = JSON.parse(
+  readFileSync(resolve(__dirname, 'package.json'), 'utf-8')
+);
+
+// Use the package name as the base path (remove any scope if present)
+const projectName = packageJson.name.replace(/^@[^/]+\//, '');
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,7 +25,8 @@ export default defineConfig({
       emitCss: false
     })
   ],
-  base: '/ps-svelte-template/',
+  // Dynamically set the base path using the package name
+  base: `/${projectName}/`,
   css: {
     // Ensure CSS modules are properly processed
     modules: {
@@ -23,7 +34,8 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'dist/WEB_ROOT/ps-svelte-template/',
+    // Dynamically set the output directory using the package name
+    outDir: `dist/WEB_ROOT/${projectName}/`,
     assetsDir: 'assets',
     // Optimize the build for web components
     rollupOptions: {
