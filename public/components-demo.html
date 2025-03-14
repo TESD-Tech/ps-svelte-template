@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerSchool Svelte Components Demo</title>
+  <style>
+    /* PowerSchool-like styling for demo purposes */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .ps-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .ps-header {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .ps-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .ps-component-container {
+      flex: 1;
+      min-width: 300px;
+      border: 1px solid #e0e0e0;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .ps-code {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin: 20px 0;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="ps-container">
+    <div class="ps-header">
+      <h1>PowerSchool Svelte Components Demo</h1>
+      <p>This page demonstrates how to use both the full Svelte application and individual components within PowerSchool.</p>
+    </div>
+    
+    <h2>1. Full Application</h2>
+    <p>The complete Svelte application encapsulated as a custom element:</p>
+    
+    <div class="ps-component-container">
+      <!-- The full Svelte application as a custom element -->
+      <ps-svelte-app></ps-svelte-app>
+    </div>
+    
+    <div class="ps-code">
+&lt;!-- How to use the full application --&gt;
+&lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;
+    </div>
+    
+    <h2>2. Individual Components</h2>
+    <p>Individual Svelte components can be used independently:</p>
+    
+    <div class="ps-content">
+      <div class="ps-component-container">
+        <h3>Counter Component</h3>
+        <!-- Individual Counter component as a custom element -->
+        <svelte-counter></svelte-counter>
+        
+        <div class="ps-code">
+&lt;!-- How to use the Counter component --&gt;
+&lt;svelte-counter&gt;&lt;/svelte-counter&gt;
+        </div>
+      </div>
+      
+      <div class="ps-component-container">
+        <h3>Counter with Initial Value</h3>
+        <!-- Counter with a custom initial value -->
+        <svelte-counter initial-count="10"></svelte-counter>
+        
+        <div class="ps-code">
+&lt;!-- How to use the Counter component with props --&gt;
+&lt;svelte-counter initial-count="10"&gt;&lt;/svelte-counter&gt;
+        </div>
+      </div>
+    </div>
+    
+    <h2>Integration Instructions</h2>
+    <p>To use these components in your PowerSchool pages:</p>
+    
+    <ol>
+      <li>Include the main JavaScript bundle:
+        <div class="ps-code">&lt;script type="module" src="/ps-svelte-template/index.js"&gt;&lt;/script&gt;</div>
+      </li>
+      <li>Add the component tag where you want it to appear:
+        <div class="ps-code">
+&lt;!-- For the full application --&gt;
+&lt;ps-svelte-app&gt;&lt;/ps-svelte-app&gt;
+
+&lt;!-- For individual components --&gt;
+&lt;svelte-counter&gt;&lt;/svelte-counter&gt;
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Load the Svelte components -->
+  <script type="module" src="/ps-svelte-template/index.js"></script>
+</body>
+</html>

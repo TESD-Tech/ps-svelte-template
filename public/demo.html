@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerSchool Svelte Component Demo</title>
+  <style>
+    /* PowerSchool-like styling for demo purposes */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .ps-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .ps-header {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .ps-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .ps-sidebar {
+      flex: 0 0 250px;
+      padding-right: 20px;
+    }
+    .ps-main {
+      flex: 1;
+      min-width: 300px;
+    }
+    .ps-component-container {
+      border: 1px solid #e0e0e0;
+      padding: 15px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="ps-container">
+    <div class="ps-header">
+      <h1>PowerSchool Svelte Component Demo</h1>
+      <p>This page demonstrates how to use the Svelte custom web component within a PowerSchool-like page.</p>
+    </div>
+    
+    <div class="ps-content">
+      <div class="ps-sidebar">
+        <h3>PowerSchool Navigation</h3>
+        <ul>
+          <li>Dashboard</li>
+          <li>Students</li>
+          <li>Classes</li>
+          <li>Reports</li>
+          <li>Custom Components</li>
+        </ul>
+      </div>
+      
+      <div class="ps-main">
+        <h2>Svelte Component Integration</h2>
+        <p>The component below is encapsulated in a Shadow DOM, which means its styles and JavaScript won't conflict with the PowerSchool page:</p>
+        
+        <div class="ps-component-container">
+          <!-- This is where our custom web component is used -->
+          <ps-svelte-app></ps-svelte-app>
+        </div>
+        
+        <h3>Integration Notes</h3>
+        <ul>
+          <li>The component is fully isolated using Shadow DOM</li>
+          <li>CSS styles from PowerSchool won't affect the component</li>
+          <li>CSS styles from the component won't leak out to PowerSchool</li>
+          <li>JavaScript is encapsulated to prevent conflicts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the Svelte app as a web component -->
+  <script type="module" src="/ps-svelte-template/index.js"></script>
+</body>
+</html>
