@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<psExtension xmlns="http://www.powerschool.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.powerschool.com psextension.xsd">
+	<extensionname>U_PS_Svelte_Template</extensionname>
+	<extendedTable coreTable="Users" dbTableName="U_ps_svelte_template" childName="U_ps_svelte_template" comment="Sample Counter">
+		<field name="counter" type="Integer"/>
+	</extendedTable>
+</psExtension>
