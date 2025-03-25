@@ -10,6 +10,49 @@ source /Users/kempb/.zshrc
 
 Failing to source the `.zshrc` file may result in unexpected behavior, path issues, or command not found errors.
 
+## Portal-Aware Data Configuration
+
+### Dynamic Data Sourcing Strategy
+
+The template introduces a sophisticated approach to data management across different PowerSchool portals:
+
+#### Key Components
+- `dataConfig.ts`: Central configuration management
+- Dynamic portal detection
+- Environment-specific data loading
+
+#### Portal Detection Mechanism
+- Automatically detects current portal from URL
+- Supports 'admin', 'teachers', and 'guardian' portals
+- Fallback to 'unknown' if no match found
+
+#### Data Source Path Construction
+- Development: `/mock-data.json`
+- Production: `/${pluginName}/${portal}/data.json`
+
+#### Data Structure Example
+```json
+{
+  "id": "unique-identifier",
+  "name": "Sample Item",
+  "portalAccess": {
+    "admin": true,
+    "teachers": false,
+    "guardian": true
+  }
+}
+```
+
+### Portal-Specific Features
+- Granular access control
+- Dynamic data filtering
+- Seamless environment switching
+
+### Implementation Highlights
+- TypeScript-driven type safety
+- Reactive state management
+- Flexible configuration
+
 ## Key Technical Specifications
 
 ### Svelte 5 Runes Implementation
@@ -68,12 +111,13 @@ export default defineConfig({
 ├── dist/                     # Build output
 ├── plugin_archive/           # Plugin archives
 ├── public/                   # Static assets
+│   └── mock-data.json        # Development mock data
 ├── src/
 │   ├── lib/                  # Reusable components
+│   │   ├── dataConfig.ts     # Data configuration management
+│   │   └── Counter.svelte    # Example component
 │   ├── app.css               # Global styles
 │   ├── App.svelte            # Main application component
-│   ├── custom-element.ts     # Web component wrapper
-│   ├── lib-components.ts     # Component registration
 │   └── main.ts               # Entry point
 └── vite.config.ts            # Build configuration
 ```

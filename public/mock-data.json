@@ -1,0 +1,36 @@
+[
+  {
+    "id": "counter-default",
+    "count": 0,
+    "label": "Default Counter",
+    "portalAccess": {
+      "admin": true,
+      "teachers": true,
+      "guardian": true
+    }
+  },
+  {
+    "id": "counter-teachers",
+    "count": 0,
+    "label": "Teachers",
+    "portalAccess": {
+      "teachers": true
+    }
+  },
+  {
+    "id": "counter-admin",
+    "count": 0,
+    "label": "Admin",
+    "portalAccess": {
+      "admin": true
+    }
+  },
+  {
+    "id": "counter-guardian",
+    "count": 0,
+    "label": "Guardian",
+    "portalAccess": {
+      "guardian": true
+    }
+  }
+]
