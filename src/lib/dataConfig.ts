@@ -1,5 +1,6 @@
 // src/lib/dataConfig.ts
 import { writable } from 'svelte/store';
+import packageJson from '../../package.json';
 
 // Define possible portal types
 export type Portal = 'admin' | 'teachers' | 'guardian' | 'unknown';
@@ -9,6 +10,11 @@ export interface AppConfig {
   dataSourcePath: string;
   environment: 'development' | 'production';
   portal: Portal;
+}
+
+// Function to get the plugin name from package.json
+function getPluginName(): string {
+  return packageJson.name.replace(/^@[^/]+\//, '');
 }
 
 // Function to determine the current portal from the URL
@@ -21,17 +27,6 @@ function detectPortal(): Portal {
   if (path.includes('/guardian/')) return 'guardian';
   
   return 'unknown';
-}
-
-// Function to get the plugin name from package.json
-function getPluginName(): string {
-  // This is a placeholder. In a real scenario, you'd:
-  // 1. Have a build process that injects the plugin name
-  // 2. Or have a global variable set during build
-  // 3. Or dynamically import package.json
-  
-  // Fallback to a default name if unable to determine
-  return 'ps-svelte-template';
 }
 
 // Function to determine the correct configuration

@@ -31,6 +31,12 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly'
     }
   },
+  resolve: {
+    // Add alias for package.json import
+    alias: {
+      '../../package.json': resolve(__dirname, 'package.json')
+    }
+  },
   build: {
     // Dynamically set the output directory using the package name
     outDir: `dist/WEB_ROOT/${projectName}/`,
