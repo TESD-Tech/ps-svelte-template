@@ -11,7 +11,7 @@ const componentModules = import.meta.glob('./lib/*.svelte', { eager: true });
 type SvelteComponentConstructor = ComponentType<any>;
 
 /**
- * Creates a custom element class for a Svelte component
+ * Creates a custom element class for a Svelte component with Svelte 5 compatibility
  */
 function createCustomElementClass(
   SvelteComponent: SvelteComponentConstructor, 
@@ -21,6 +21,11 @@ function createCustomElementClass(
     private shadow: ShadowRoot;
     private svelteInstance: ReturnType<typeof mount> | null = null;
     private props: Record<string, any> = {};
+    
+    // Define the observed attributes for attribute changes
+    static get observedAttributes() {
+      return Array.from(this.prototype.constructor.name);
+    }
     
     constructor() {
       super();
@@ -110,15 +115,30 @@ function createCustomElementClass(
     }
     
     /**
-     * Mount the Svelte component
+     * Mount the Svelte component with improved error handling
+     * and compatibility with Svelte 5's mount API
      */
     private mountComponent() {
-      const target = this.shadow.getElementById(`${elementName}-container`);
-      if (target) {
+      try {
+        const target = this.shadow.getElementById(`${elementName}-container`);
+        
+        if (!target) {
+          console.error(`Mount target not found for ${elementName}`);
+          return;
+        }
+        
+        // Using the Svelte 5 mount API
         this.svelteInstance = mount(SvelteComponent, {
           target,
           props: this.props
         });
+        
+        // Success logging for development
+        if (import.meta.env.DEV) {
+          console.debug(`Successfully mounted <${elementName}>`);
+        }
+      } catch (error) {
+        console.error(`Failed to mount component <${elementName}>:`, error);
       }
     }
     
@@ -127,19 +147,35 @@ function createCustomElementClass(
      */
     private updateComponent() {
       if (this.svelteInstance) {
-        Object.entries(this.props).forEach(([key, value]) => {
-          (this.svelteInstance as any)[key] = value;
-        });
+        try {
+          // Use the Svelte 5 approach to update props
+          Object.entries(this.props).forEach(([key, value]) => {
+            // In Svelte 5, props are directly set on the mount instance
+            (this.svelteInstance as any)[key] = value;
+          });
+        } catch (error) {
+          console.error(`Failed to update props for <${elementName}>:`, error);
+        }
       }
     }
     
     /**
-     * Destroy the Svelte component
+     * Destroy the Svelte component with proper cleanup
      */
     private destroyComponent() {
-      if (this.svelteInstance && typeof this.svelteInstance.$destroy === 'function') {
-        this.svelteInstance.$destroy();
-        this.svelteInstance = null;
+      if (this.svelteInstance) {
+        try {
+          // Svelte 5 uses different destroy mechanism
+          if (typeof this.svelteInstance.$destroy === 'function') {
+            this.svelteInstance.$destroy();
+          } else {
+            // Svelte 5 mount API handles cleanup directly
+            // by returning control handle we can destroy
+            this.svelteInstance = null;
+          }
+        } catch (error) {
+          console.error(`Error destroying <${elementName}>:`, error);
+        }
       }
     }
   };
@@ -167,12 +203,18 @@ export function registerLibComponents() {
     const component = (module as any).default;
     
     // Register the custom element
-    customElements.define(
-      elementName,
-      createCustomElementClass(component, elementName)
-    );
-    
-    console.log(`Registered custom element: <${elementName}>`);
+    try {
+      customElements.define(
+        elementName,
+        createCustomElementClass(component, elementName)
+      );
+      
+      if (import.meta.env.DEV) {
+        console.log(`Registered custom element: <${elementName}>`);
+      }
+    } catch (error) {
+      console.error(`Failed to register <${elementName}>:`, error);
+    }
   });
 }
 

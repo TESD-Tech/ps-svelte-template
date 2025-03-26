@@ -11,6 +11,10 @@ const packageJson = JSON.parse(
 // Use the package name as the base path (remove any scope if present)
 const projectName = packageJson.name.replace(/^@[^/]+\//, '');
 
+// Debug what's happening
+console.log('Project name:', projectName);
+console.log('Public directory:', resolve(__dirname, 'public'));
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -23,6 +27,18 @@ export default defineConfig({
       emitCss: false
     })
   ],
+  // Configure the dev server
+  server: {
+    watch: {
+      // Ensure that changes to the mock data are detected
+      usePolling: true,
+    },
+    // Ensure proper CORS and caching configuration
+    fs: {
+      strict: false, // Allow serving files from outside the project root
+      allow: ['..'], // Allow serving files from one level up
+    },
+  },
   // Dynamically set the base path using the package name
   base: `/${projectName}/`,
   css: {
@@ -32,9 +48,10 @@ export default defineConfig({
     }
   },
   resolve: {
-    // Add alias for package.json import
+    // Add alias for package.json import and $lib
     alias: {
-      '../../package.json': resolve(__dirname, 'package.json')
+      '../../package.json': resolve(__dirname, 'package.json'),
+      '$lib': resolve(__dirname, './src/lib')
     }
   },
   build: {

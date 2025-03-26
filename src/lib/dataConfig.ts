@@ -1,4 +1,5 @@
 // src/lib/dataConfig.ts
+// Using writable for compatibility with Svelte 5 runes
 import { writable } from 'svelte/store';
 import packageJson from '../../package.json';
 
@@ -48,9 +49,9 @@ function getAppConfig(): AppConfig {
   
   // Development configuration
   return {
-    dataSourcePath: '/mock-data.json', // Local Vite development path
+    dataSourcePath: `${window.location.pathname}mock-data.json`, // Use the full path
     environment: 'development',
-    portal: 'unknown'
+    portal: detectPortal()
   };
 }
 
@@ -59,14 +60,15 @@ export const appConfig = writable<AppConfig>(getAppConfig());
 
 // Async function to load data from the configured path
 export async function loadAppData<T>(): Promise<T> {
-  // Get the current configuration
-  const config = getAppConfig();
+  let config;
+  const unsubscribe = appConfig.subscribe(c => config = c);
+  unsubscribe();
   
   try {
+    console.log(`Loading data from ${config.dataSourcePath} for portal ${config.portal}`);
     const response = await fetch(config.dataSourcePath);
     
     if (!response.ok) {
-      // Log detailed error information
       console.error(`Failed to fetch data from ${config.dataSourcePath}`, 
         `Status: ${response.status}, 
         Portal: ${config.portal}, 
@@ -76,11 +78,29 @@ export async function loadAppData<T>(): Promise<T> {
     }
     
     const data = await response.json();
+    console.log('Loaded raw data:', data);
+    
+    // If we have an array, filter based on portal access
+    if (Array.isArray(data)) {
+      const filteredData = data.filter(item => {
+        // Include items without portalAccess property
+        if (!item.portalAccess) return true;
+        
+        // Include items with access to current portal
+        if (item.portalAccess[config.portal]) return true;
+        
+        return false;
+      });
+      
+      console.log('Filtered data for portal', config.portal, ':', filteredData);
+      return filteredData as T;
+    }
+    
     return data as T;
   } catch (error) {
     console.error('Failed to load application data:', error);
     
-    // Provide fallback or default data
+    // Provide empty array as fallback
     return [] as T;
   }
 }
@@ -88,26 +108,39 @@ export async function loadAppData<T>(): Promise<T> {
 // Reactive store for application data
 export const appData = writable<any[]>([]);
 
-// Initialize data loading
+// Initialize data loading - returns a promise for use with runes $effect
 export async function initializeAppData() {
-  const data = await loadAppData<any[]>();
-  appData.set(data);
+  try {
+    const data = await loadAppData<any[]>();
+    console.log('Setting app data:', data);
+    appData.set(data);
+    return data;
+  } catch (err) {
+    console.error('Error initializing app data:', err);
+    appData.set([]);
+    return [];
+  }
 }
 
-// Example of a data mutation function that works across environments
+// Update data function that works across environments
 export function updateAppData(updateFn: (current: any[]) => any[]) {
   appData.update(updateFn);
   
   // Optional: Sync back to server in production
   const config = getAppConfig();
   if (config.environment === 'production') {
-    // Implement server sync logic here
-    // This might involve a POST/PUT request to update the JSON file
-    console.log(`Attempting to sync data for ${config.portal} portal`);
+    // Implement server sync logic here if needed
+    console.log(`Sync changes for ${config.portal} portal would happen here`);
   }
 }
 
-// Utility function to check current portal
-export function getCurrentPortal(): Portal {
-  return getAppConfig().portal;
+// Function to manually change portal (for development)
+export function changePortal(portal: Portal) {
+  appConfig.update(config => ({
+    ...config,
+    portal
+  }));
+  
+  // Reload data with new portal
+  initializeAppData();
 }

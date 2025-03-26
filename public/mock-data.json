@@ -1,34 +1,43 @@
 [
   {
-    "id": "counter-default",
-    "count": 0,
-    "label": "Default Counter",
+    "id": "counter-all",
+    "count": 5,
+    "label": "Global Counter",
     "portalAccess": {
       "admin": true,
       "teachers": true,
-      "guardian": true
+      "guardian": true,
+      "unknown": true
     }
   },
   {
-    "id": "counter-teachers",
-    "count": 0,
-    "label": "Teachers",
+    "id": "counter-unknown",
+    "count": 42,
+    "label": "Unknown Portal Counter",
     "portalAccess": {
-      "teachers": true
+      "unknown": true
     }
   },
   {
     "id": "counter-admin",
-    "count": 0,
-    "label": "Admin",
+    "count": 25,
+    "label": "Admin Portal Counter",
     "portalAccess": {
       "admin": true
     }
   },
   {
+    "id": "counter-teachers",
+    "count": 10,
+    "label": "Teachers Portal Counter",
+    "portalAccess": {
+      "teachers": true
+    }
+  },
+  {
     "id": "counter-guardian",
-    "count": 0,
-    "label": "Guardian",
+    "count": 15,
+    "label": "Guardian Portal Counter",
     "portalAccess": {
       "guardian": true
     }

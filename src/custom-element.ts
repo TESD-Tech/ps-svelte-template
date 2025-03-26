@@ -16,7 +16,7 @@ function getPackageName(): string {
 
 export class SvelteAppElement extends HTMLElement {
   private shadow: ShadowRoot;
-  private app: any;
+  private app: ReturnType<typeof mount> | null = null;
 
   constructor() {
     super();
@@ -35,16 +35,41 @@ export class SvelteAppElement extends HTMLElement {
   }
 
   connectedCallback() {
-    // Mount the Svelte app when the element is connected to the DOM
-    this.app = mount(App, {
-      target: this.shadow.getElementById('svelte-app-container')!,
-    });
+    try {
+      // Mount the Svelte app when the element is connected to the DOM
+      const target = this.shadow.getElementById('svelte-app-container');
+      
+      if (!target) {
+        console.error('Mount target not found for app');
+        return;
+      }
+      
+      // Using Svelte 5's mount API
+      this.app = mount(App, {
+        target,
+        // We can pass props here if needed
+        props: {}
+      });
+      
+      if (import.meta.env.DEV) {
+        console.log('Main application mounted successfully');
+      }
+    } catch (error) {
+      console.error('Failed to mount main application:', error);
+    }
   }
 
   disconnectedCallback() {
     // Clean up when the element is removed from the DOM
-    if (this.app && typeof this.app.$destroy === 'function') {
-      this.app.$destroy();
+    if (this.app) {
+      try {
+        if (typeof this.app.$destroy === 'function') {
+          this.app.$destroy();
+        }
+        this.app = null;
+      } catch (error) {
+        console.error('Error destroying app component:', error);
+      }
     }
   }
 }
@@ -53,6 +78,21 @@ export class SvelteAppElement extends HTMLElement {
 const packageName = getPackageName();
 const elementName = `${packageName}-app`;
 
-// Log the custom element name for debugging
-console.log(`Registering custom element: ${elementName}`);
-customElements.define(elementName, SvelteAppElement);
+// Try/catch to handle registration errors
+try {
+  // Log the custom element name for debugging
+  console.log(`Registering custom element: ${elementName}`);
+  customElements.define(elementName, SvelteAppElement);
+} catch (error) {
+  console.error(`Failed to register ${elementName}:`, error);
+  
+  // Try to register with a fallback name if needed
+  if (!customElements.get('ps-svelte-app')) {
+    try {
+      customElements.define('ps-svelte-app', SvelteAppElement);
+      console.log('Registered fallback custom element: ps-svelte-app');
+    } catch (fallbackError) {
+      console.error('Failed to register fallback custom element:', fallbackError);
+    }
+  }
+}
