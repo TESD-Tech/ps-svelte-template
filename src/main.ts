@@ -1,3 +1,9 @@
+// Import and initialize the contrast fix
+import { initializeContrastFix } from './css-fix/styleInjector';
+
+// Initialize contrast fix first
+initializeContrastFix();
+
 // Import the full application custom element
 import './custom-element';
 
@@ -9,3 +15,6 @@ import './lib-components';
 // <ps-svelte-app> - The full application
 // <svelte-counter> - The Counter component (automatically registered)
 // Any new component added to src/lib will be automatically available as <svelte-componentname>
+
+// Check for missing contrast and apply fix if necessary
+console.log('PowerSchool Svelte Template initialized with contrast fix');

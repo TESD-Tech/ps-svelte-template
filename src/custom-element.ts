@@ -3,6 +3,9 @@ import App from './App.svelte';
 // Import styles but don't apply them to the document
 // We'll manually inject them into the shadow DOM
 import styles from './app.css?inline';
+// Import contrast fix CSS and injector
+import { injectShadowContrastFix } from './css-fix/styleInjector';
+import contrastFixStyles from './css-fix/contrast-fix.css?inline';
 
 // Dynamically determine the package name from the base URL
 function getPackageName(): string {
@@ -27,6 +30,12 @@ export class SvelteAppElement extends HTMLElement {
     const styleElement = document.createElement('style');
     styleElement.textContent = styles;
     this.shadow.appendChild(styleElement);
+    
+    // Add the contrast fix styles
+    const contrastFixElement = document.createElement('style');
+    contrastFixElement.textContent = contrastFixStyles;
+    contrastFixElement.id = 'contrast-fix-styles';
+    this.shadow.appendChild(contrastFixElement);
     
     // Create container for the Svelte app
     const appContainer = document.createElement('div');

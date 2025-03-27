@@ -2,6 +2,8 @@
 import { mount } from 'svelte';
 import type { ComponentType } from 'svelte';
 import styles from './app.css?inline';
+// Import contrast fix styles
+import contrastFixStyles from './css-fix/contrast-fix.css?inline';
 
 // Import all components from lib directory
 // This will be processed by Vite's glob import feature
@@ -37,6 +39,12 @@ function createCustomElementClass(
       const styleElement = document.createElement('style');
       styleElement.textContent = styles;
       this.shadow.appendChild(styleElement);
+      
+      // Inject contrast fix styles
+      const contrastFixElement = document.createElement('style');
+      contrastFixElement.textContent = contrastFixStyles;
+      contrastFixElement.id = 'contrast-fix-styles';
+      this.shadow.appendChild(contrastFixElement);
       
       // Create container
       const container = document.createElement('div');
