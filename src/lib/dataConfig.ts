@@ -14,12 +14,12 @@ export interface AppConfig {
 }
 
 // Function to get the plugin name from package.json
-function getPluginName(): string {
+export function getPluginName(): string {
   return packageJson.name.replace(/^@[^/]+\//, '');
 }
 
 // Function to determine the current portal from the URL
-function detectPortal(): Portal {
+export function detectPortal(): Portal {
   // Check the current path
   const path = window.location.pathname.toLowerCase();
   
@@ -31,7 +31,7 @@ function detectPortal(): Portal {
 }
 
 // Function to determine the correct configuration
-function getAppConfig(): AppConfig {
+export function getAppConfig(): AppConfig {
   // Check if running in PowerSchool environment
   const isPowerSchool = window.location.pathname.includes('/ps/');
   
@@ -60,9 +60,12 @@ export const appConfig = writable<AppConfig>(getAppConfig());
 
 // Async function to load data from the configured path
 export async function loadAppData<T>(): Promise<T> {
-  let config;
-  const unsubscribe = appConfig.subscribe(c => config = c);
+  let config: AppConfig | undefined;
+  const unsubscribe = appConfig.subscribe(c => { config = c; });
   unsubscribe();
+  if (!config) {
+    throw new Error('App config is not set');
+  }
   
   try {
     console.log(`Loading data from ${config.dataSourcePath} for portal ${config.portal}`);
@@ -87,7 +90,7 @@ export async function loadAppData<T>(): Promise<T> {
         if (!item.portalAccess) return true;
         
         // Include items with access to current portal
-        if (item.portalAccess[config.portal]) return true;
+        if (item.portalAccess[config!.portal]) return true;
         
         return false;
       });
