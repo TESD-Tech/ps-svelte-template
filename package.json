@@ -12,18 +12,18 @@
     "test:watch": "vitest --watch"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^5.0.3",
-    "@tesd-tech/ps-package": "^24.11.9",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@tesd-tech/ps-package": "^25.10.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.7",
-    "@tsconfig/svelte": "^5.0.4",
-    "@types/node": "^22.14.0",
+    "@tsconfig/svelte": "^5.0.6",
+    "@types/node": "^24.10.2",
     "@vitest/coverage-v8": "^3.1.1",
     "jsdom": "^26.0.0",
-    "svelte": "^5.25.12",
-    "svelte-check": "^4.1.5",
-    "typescript": "~5.8.3",
-    "vite": "^6.2.6",
+    "svelte": "^5.45.8",
+    "svelte-check": "^4.3.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.7",
     "vitest": "^3.1.1"
   }
 }
